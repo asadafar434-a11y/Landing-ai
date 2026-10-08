@@ -229,6 +229,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 .nav-links a:hover { color: #fff; }
 .nav-right { display: flex; align-items: center; gap: 14px; }
 .nav-burger { display: none; }
+.cta-short { display: none; }
+@media (max-width: 430px) {
+  .cta-full { display: none; }
+  .cta-short { display: inline; }
+}
 
 /* ---- герой ---- */
 .hero {
@@ -594,4 +599,12 @@ footer { border-top: 1px solid var(--border); padding: 56px 0 40px; transition: 
   .nav-links { display: none; }
   section { padding: 84px 0; }
   .pricing-teaser .wrap { padding: 32px; }
+}
+
+@media (max-width: 480px) {
+  .nav .wrap { padding: 0 16px; gap: 12px; }
+  .nav-right { gap: 8px; }
+  .brand span { font-size: 14px; }
+  .brand img { width: 26px; height: 26px; }
+  .nav-cta { padding: 0 14px; }
 }
