@@ -595,8 +595,13 @@ footer { border-top: 1px solid var(--border); padding: 56px 0 40px; transition: 
   font-family: var(--font-mono);
 }
 
-@media (max-width: 760px) {
+/* Шапка: ссылкам + бренду + кнопке тесно, пока нет ~900px — до этого ссылки прячем,
+   иначе бренд переносится на две строки, а кнопка упирается в ссылки. */
+@media (max-width: 900px) {
   .nav-links { display: none; }
+}
+
+@media (max-width: 760px) {
   section { padding: 84px 0; }
   .pricing-teaser .wrap { padding: 32px; }
 }
