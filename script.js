@@ -1,6 +1,18 @@
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const THEME_KEY = "landing-theme";
+  const root = document.documentElement;
+  document.getElementById("themeToggle")?.addEventListener("click", () => {
+    const isLight = root.getAttribute("data-theme") === "light";
+    const next = isLight ? "dark" : "light";
+    if (next === "light") root.setAttribute("data-theme", "light");
+    else root.removeAttribute("data-theme");
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {}
+  });
+
   const nav = document.getElementById("nav");
   const onNavScroll = () => nav.classList.toggle("scrolled", window.scrollY > 10);
   onNavScroll();
