@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тендерный юрист — тендерная заявка за 15 минут</title>
+<meta name="description" content="ИИ читает документы закупки, собирает техническое предложение и проверяет заявку перед отправкой. Для 44-ФЗ и 223-ФЗ. Проверено на живых заявках.">
+<meta property="og:title" content="Тендерный юрист — тендерная заявка за 15 минут">
+<meta property="og:description" content="ИИ читает документы закупки, собирает техническое предложение и проверяет заявку перед отправкой. Для 44-ФЗ и 223-ФЗ.">
+<meta property="og:image" content="./assets/img/logo.png">
+<link rel="icon" href="./assets/img/logo.png">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="./assets/img/logo.png" alt="Тендерный юрист">
+      <span>Тендерный юрист</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#how">Как это работает</a>
+      <a href="#features">Возможности</a>
+      <a href="#tariffs">Тарифы</a>
+    </nav>
+    <div class="nav-right">
+      <!-- CTA ведёт на localhost:3000 (запуск: npm --prefix web run build:host && npm --prefix web run start:local) —
+           перед публикацией лендинга замените на боевой адрес продукта на хостинге. -->
+      <a class="btn btn-primary btn-sm" href="http://localhost:3000" target="_blank" rel="noopener">Попробовать бесплатно</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-media">
+      <video autoplay muted loop playsinline id="heroVideo">
+        <source src="./assets/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-glow" data-parallax-speed="0.15"></div>
+    <div class="hero-scrim"></div>
+
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="proof-chip">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Проверено на живых заявках
+        </div>
+        <h1>Тендерная заявка —<br>за <span class="grad-text">15 минут</span></h1>
+        <p class="lead">ИИ-юрист читает документы закупки, находит требования, собирает техническое предложение и проверяет заявку перед отправкой. Для 44-ФЗ и 223-ФЗ. Ни одного факта без источника.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="http://localhost:3000" target="_blank" rel="noopener">Попробовать бесплатно</a>
+          <a class="btn btn-ghost" href="#how">
+            Как это работает
+          </a>
+        </div>
+        <div class="hero-note">44-ФЗ · 223-ФЗ · Загрузка → Анализ → Цена → Проверка → Пакет</div>
+      </div>
+    </div>
+
+    <div class="hero-floats">
+      <div class="float-card float-1" data-parallax-speed="0.25">
+        <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div>
+          <div class="num">15 минут</div>
+          <div class="lbl">на одну заявку</div>
+        </div>
+      </div>
+      <div class="float-card float-2" data-parallax-speed="0.4">
+        <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg></div>
+        <div>
+          <div class="num">5 шагов</div>
+          <div class="lbl">от файла до пакета</div>
+        </div>
+      </div>
+      <div class="float-card float-3" data-parallax-speed="0.3">
+        <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg></div>
+        <div>
+          <div class="num">44-ФЗ · 223-ФЗ</div>
+          <div class="lbl">обе редакции закона</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="scroll-cue" id="scrollCue" aria-label="Пролистать к разделу «Как это работает»">
+      Листайте вниз
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </button>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Как это работает</div>
+        <h2>От документов закупки до готовой заявки</h2>
+        <p>Пять шагов — без лишних экранов и ручного оформления.</p>
+      </div>
+
+      <div class="steps-row">
+        <div class="steps-track">
+          <div class="steps-line"></div>
+          <div class="steps-fill" id="stepsFill"></div>
+        </div>
+        <div class="steps-list" id="stepsList">
+          <div class="step reveal">
+            <div class="step-dot"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg></div>
+            <div class="step-body">
+              <h3>Загрузка <span class="step-num">01</span></h3>
+              <p>Закидываете документы закупки целиком: PDF, Word, Excel, сканы и фото — ИИ разберёт всё сам.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-dot"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg></div>
+            <div class="step-body">
+              <h3>Анализ <span class="step-num">02</span></h3>
+              <p>Находит требования и условия закупки — с точным адресом: страница, таблица, пункт.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-dot"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h8a4 4 0 0 0 0-8H9v18"/><path d="M6 15h8"/></svg></div>
+            <div class="step-body">
+              <h3>Цена <span class="step-num">03</span></h3>
+              <p>Считает НМЦК и обеспечение, помогает собрать расчёт цены по закупке.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-dot"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
+            <div class="step-body">
+              <h3>Проверка <span class="step-num">04</span></h3>
+              <p>Девять проверок перед отправкой: комплект, сроки, подписи, соответствие требованиям.</p>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="step-dot"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg></div>
+            <div class="step-body">
+              <h3>Пакет <span class="step-num">05</span></h3>
+              <p>Готовый комплект заявки: Word, PDF и ODT — скачиваете и подаёте на площадке.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Возможности</div>
+        <h2>Что делает ИИ-юрист</h2>
+        <p>Каждый вывод — с источником в документе. Ничего не придумывается.</p>
+      </div>
+
+      <div class="features-grid reveal">
+        <div class="feature-card">
+          <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg></div>
+          <h3>Требования закупки</h3>
+          <p>Срок, обязательность, числовые условия — с точным адресом в документе: страница, таблица, пункт.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></div>
+          <h3>База доказательств компании</h3>
+          <p>Лицензии, допуски, опыт и сотрудники — каждый факт с документом-источником и сроком действия.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
+          <h3>Автопроверка перед отправкой</h3>
+          <p>Девять проверок заявки: от комплекта документов до сроков и подписей — до того, как вы отправите.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
+          <h3>Готовые файлы заявки</h3>
+          <p>Техническое предложение и комплект — сразу в Word, PDF и ODT, из одного описания документа.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <h3>Ни одного выдуманного факта</h3>
+          <p>Срок, число, реквизит ИИ не придумывает — их читает код из цитаты документа, а не модель.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-box"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg></div>
+          <h3>44-ФЗ и 223-ФЗ</h3>
+          <p>Версии закона привязаны к дате закупки — правила применяются те, что действовали на тот момент.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-section">
+    <div class="wrap">
+      <div class="proof-card reveal">
+        <div class="eyebrow">Проверено на практике</div>
+        <p class="proof-quote">Первая заявка, собранная с ИИ-юристом, прошла проверку заказчика и не была отклонена.</p>
+        <div class="proof-meta">Реальная закупка · октябрь 2026</div>
+        <p class="proof-foot">Мы не тестируем на абстрактных примерах: каждое изменение проверяется на настоящих закупках и документах компании.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tariffs">
+    <div class="wrap">
+      <div class="pricing-teaser">
+        <div>
+          <div class="eyebrow">Тарифы</div>
+          <h2>Один инструмент — от быстрой проверки до полного сопровождения заявки</h2>
+          <p>Выбирайте по задаче: разовая проверка комплекта или полное сопровождение закупки с ИИ-юристом.</p>
+        </div>
+        <div class="pricing-teaser-cta">
+          <a class="btn btn-ghost" href="http://localhost:3000/tariffs" target="_blank" rel="noopener">Смотреть тарифы →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap reveal">
+      <h2>Соберите первую заявку за 15 минут</h2>
+      <p>Загрузите документы закупки — и посмотрите, что найдёт ИИ-юрист.</p>
+      <a class="btn btn-primary" href="http://localhost:3000" target="_blank" rel="noopener">Попробовать бесплатно</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <img src="./assets/img/logo.png" alt="Тендерный юрист">
+          <span>Тендерный юрист</span>
+        </a>
+        <p>ИИ-помощник для участия в тендерах по 44-ФЗ и 223-ФЗ.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Продукт</h4>
+          <a href="#how">Как это работает</a>
+          <a href="#features">Возможности</a>
+          <a href="#tariffs">Тарифы</a>
+        </div>
+        <div class="footer-col">
+          <h4>Документы</h4>
+          <a href="http://localhost:3000/privacy" target="_blank" rel="noopener">Политика конфиденциальности</a>
+          <a href="http://localhost:3000/terms" target="_blank" rel="noopener">Условия использования</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Тендерный юрист</span>
+      <span>44-ФЗ · 223-ФЗ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./script.js"></script>
+</body>
+</html>
