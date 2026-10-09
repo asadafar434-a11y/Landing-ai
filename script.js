@@ -57,7 +57,7 @@
         const heroRect = hero.getBoundingClientRect();
         if (heroRect.bottom > 0 && heroRect.top < vh) {
           const progress = -heroRect.top;
-          if (heroVideo) heroVideo.style.transform = `translateY(${progress * 0.18}px) scale(1.08)`;
+          if (heroVideo) heroVideo.style.transform = `translateY(${progress * 0.18}px) scale(1.02)`;
           for (const el of parallaxEls) {
             const speed = Number(el.dataset.parallaxSpeed || 0);
             el.style.transform = `translateY(${progress * speed}px)`;
