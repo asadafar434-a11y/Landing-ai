@@ -359,15 +359,12 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
 }
 .hero-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
 
-/* 3D-иконки из макета Figma (вариант With Background): квадрат с фоном, скругление как у карточек. */
+/* 3D-иконки из макета Figma (светящееся стекло, фон прозрачный) — без плиток. */
 .icon3d {
   display: block;
   flex: none;
-  border-radius: 12px;
-  overflow: hidden;
 }
-.float-card .icon3d { width: 40px; height: 40px; border-radius: 10px; }
-.proof-chip-icon { border-radius: 50%; }
+.float-card .icon3d { width: 40px; height: 40px; }
 .feature-card .icon3d {
   width: 44px;
   height: 44px;
