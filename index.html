@@ -52,9 +52,10 @@
 
   <section class="hero">
     <div class="hero-media">
-      <video autoplay muted loop playsinline id="heroVideo">
+      <video muted playsinline preload="auto" id="heroVideo">
         <source src="./assets/hero.mp4" type="video/mp4">
       </video>
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
     </div>
     <div class="hero-glow" data-parallax-speed="0.15"></div>
     <div class="hero-scrim"></div>

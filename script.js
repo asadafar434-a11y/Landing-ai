@@ -42,73 +42,27 @@
 
   const parallaxEls = Array.from(document.querySelectorAll("[data-parallax-speed]"));
   const heroVideo = document.getElementById("heroVideo");
+  const heroCanvas = document.getElementById("heroCanvas");
+  const heroMedia = document.querySelector(".hero-media");
+  const heroVisuals = [heroVideo, heroCanvas].filter(Boolean);
   const hero = document.querySelector(".hero");
   const stepsList = document.getElementById("stepsList");
   const stepsFill = document.getElementById("stepsFill");
-
-  // Видео целиком — это один длинный разворот медали (к 3-4-й секунде камера уже
-  // смотрит почти сбоку). Вместо родного loop (прыжок в конец → начало, похоже на
-  // рывок) берём только спокойный участок 0–2.6с и качаем туда-обратно: вперёд —
-  // обычное воспроизведение (гладко, родной декодер), назад — currentTime шагами
-  // каждый кадр (play() в обратную сторону браузеры не умеют). Шаг — каждый rAF,
-  // без искусственного троттлинга: именно он давал заметные рывки.
-  if (heroVideo) {
-    heroVideo.removeAttribute("loop");
-    heroVideo.pause();
-    const SWAY_END = 2.6;
-    if (reduceMotion) {
-      heroVideo.currentTime = 0;
-    } else {
-      let lastTs = null;
-
-      function reverseStep(ts) {
-        if (lastTs == null) lastTs = ts;
-        const dt = (ts - lastTs) / 1000;
-        lastTs = ts;
-        const next = heroVideo.currentTime - dt;
-        if (next <= 0) {
-          heroVideo.currentTime = 0;
-          lastTs = null;
-          heroVideo.play().catch(() => {});
-          return;
-        }
-        heroVideo.currentTime = next;
-        requestAnimationFrame(reverseStep);
-      }
-
-      heroVideo.addEventListener("timeupdate", () => {
-        if (!heroVideo.paused && heroVideo.currentTime >= SWAY_END) {
-          heroVideo.pause();
-          lastTs = null;
-          requestAnimationFrame(reverseStep);
-        }
-      });
-
-      const startForward = () => {
-        heroVideo.currentTime = 0;
-        heroVideo.play().catch(() => {});
-      };
-      if (heroVideo.readyState >= 1) startForward();
-      else heroVideo.addEventListener("loadedmetadata", startForward, { once: true });
-    }
-  }
 
   let ticking = false;
   function onFrame() {
     ticking = false;
     const vh = window.innerHeight;
-    const scrollY = window.scrollY;
 
-    if (!reduceMotion) {
-      if (hero) {
-        const heroRect = hero.getBoundingClientRect();
-        if (heroRect.bottom > 0 && heroRect.top < vh) {
-          const progress = -heroRect.top;
-          if (heroVideo) heroVideo.style.transform = `translateY(${progress * 0.18}px) scale(1.02)`;
-          for (const el of parallaxEls) {
-            const speed = Number(el.dataset.parallaxSpeed || 0);
-            el.style.transform = `translateY(${progress * speed}px)`;
-          }
+    if (!reduceMotion && hero) {
+      const heroRect = hero.getBoundingClientRect();
+      if (heroRect.bottom > 0 && heroRect.top < vh) {
+        const progress = -heroRect.top;
+        const heroTransform = `translateY(${progress * 0.18}px) scale(1.02)`;
+        heroVisuals.forEach((el) => (el.style.transform = heroTransform));
+        for (const el of parallaxEls) {
+          const speed = Number(el.dataset.parallaxSpeed || 0);
+          el.style.transform = `translateY(${progress * speed}px)`;
         }
       }
     }
@@ -130,6 +84,102 @@
   document.addEventListener("scroll", requestTick, { passive: true });
   window.addEventListener("resize", requestTick);
   onFrame();
+
+  // Качание медали. Ролик — один долгий разворот, поэтому берём спокойный участок 0–2.6с.
+  // Кадры декодируются один раз при загрузке (requestVideoFrameCallback отдаёт ровно те кадры,
+  // что видит пользователь), дальше канва переключает их по времени: вперёд, потом назад.
+  // Перемотки самого видео назад на каждом кадре и давали рывки — их здесь больше нет.
+  const SWAY_END = 2.6;
+  const FRAME_SIZE = 720;
+  const canSway =
+    !reduceMotion &&
+    heroVideo &&
+    heroCanvas &&
+    heroMedia &&
+    hero &&
+    "requestVideoFrameCallback" in HTMLVideoElement.prototype &&
+    "createImageBitmap" in window;
+
+  if (heroVideo) heroVideo.pause();
+
+  if (canSway) {
+    let visible = true;
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+    }).observe(hero);
+
+    const ctx = heroCanvas.getContext("2d");
+    heroCanvas.width = FRAME_SIZE;
+    heroCanvas.height = FRAME_SIZE;
+
+    const jobs = [];
+    let capturing = true;
+
+    const startLoop = (frames) => {
+      const bitmaps = frames.map((f) => f.bitmap);
+      const n = bitmaps.length;
+      const span = frames[n - 1].t - frames[0].t;
+      const fps = span > 0 ? (n - 1) / span : 24;
+      const cycle = 2 * n - 2;
+      const frameAt = (k) => {
+        const pos = k % cycle;
+        return bitmaps[pos < n ? pos : cycle - pos];
+      };
+
+      ctx.drawImage(bitmaps[n - 1], 0, 0);
+      heroMedia.classList.add("is-canvas");
+
+      const t0 = performance.now() - ((n - 1) / fps) * 1000;
+      let lastK = -1;
+      const draw = (now) => {
+        if (visible) {
+          const k = Math.floor(((now - t0) / 1000) * fps);
+          if (k !== lastK) {
+            lastK = k;
+            ctx.drawImage(frameAt(k), 0, 0);
+          }
+        }
+        requestAnimationFrame(draw);
+      };
+      requestAnimationFrame(draw);
+    };
+
+    const finishCapture = () => {
+      if (!capturing) return;
+      capturing = false;
+      heroVideo.pause();
+      Promise.all(jobs).then((list) => {
+        const frames = list.filter(Boolean).sort((a, b) => a.t - b.t);
+        if (frames.length > 1) startLoop(frames);
+      });
+    };
+
+    const onVideoFrame = (now, meta) => {
+      if (!capturing) return;
+      if (meta.mediaTime > SWAY_END) {
+        finishCapture();
+        return;
+      }
+      jobs.push(
+        createImageBitmap(heroVideo, { resizeWidth: FRAME_SIZE, resizeHeight: FRAME_SIZE })
+          .then((bitmap) => ({ t: meta.mediaTime, bitmap }))
+          .catch(() => null)
+      );
+      heroVideo.requestVideoFrameCallback(onVideoFrame);
+    };
+
+    const begin = () => {
+      heroVideo.currentTime = 0;
+      heroVideo.requestVideoFrameCallback(onVideoFrame);
+      heroVideo.play().catch(() => {
+        capturing = false;
+      });
+    };
+
+    heroVideo.addEventListener("ended", finishCapture);
+    if (heroVideo.readyState >= 2) begin();
+    else heroVideo.addEventListener("loadeddata", begin, { once: true });
+  }
 
   if (!reduceMotion && hero && window.matchMedia("(pointer: fine)").matches) {
     const floats = document.querySelectorAll(".float-card");
