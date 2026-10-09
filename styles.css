@@ -238,7 +238,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 /* ---- герой ---- */
 .hero {
   position: relative;
-  min-height: clamp(540px, 82svh, 820px);
+  min-height: clamp(460px, 62svh, 640px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -276,7 +276,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
   filter: blur(10px);
 }
 
-.hero .wrap { position: relative; padding-top: 110px; padding-bottom: 60px; }
+.hero .wrap { position: relative; padding-top: 100px; padding-bottom: 40px; }
 /* Контент героя — всегда светлый текст на видео, независимо от темы страницы. */
 .hero-content { max-width: 760px; color: #fff; }
 .hero .btn-ghost {
@@ -390,10 +390,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 .float-card { color: #fff; }
 .float-card .num { font-family: var(--font-mono); font-size: 16px; font-weight: 600; line-height: 1.1; }
 .float-card .lbl { font-size: 12px; color: rgba(255, 255, 255, 0.6); }
-.float-1 { top: 16%; right: 6%; }
-.float-2 { top: 54%; right: 15%; }
-.float-3 { top: 70%; left: 4%; }
-@media (max-width: 860px) {
+.float-1 { top: 18%; right: 6%; }
+.float-2 { top: 46%; right: 4%; }
+.float-3 { top: 74%; right: 8%; }
+/* Карточки только там, где герою есть простор (за текстом справа) —
+   иначе на средних ширинах наезжают на заголовок и кнопки. */
+@media (max-width: 1150px) {
   .hero-floats { display: none; }
 }
 
