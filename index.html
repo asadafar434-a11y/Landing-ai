@@ -35,8 +35,8 @@
     </nav>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тёмную/светлую тему">
-        <img class="icon3d theme-icon icon-sun" src="./assets/icons3d/sun.webp" alt="" width="22" height="22">
-        <img class="icon3d theme-icon icon-moon" src="./assets/icons3d/moon.webp" alt="" width="22" height="22">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
       </button>
       <!-- CTA ведёт на localhost:3000 (запуск: npm --prefix web run build:host && npm --prefix web run start:local) —
            перед публикацией лендинга замените на боевой адрес продукта на хостинге. -->
@@ -63,7 +63,7 @@
     <div class="wrap">
       <div class="hero-content">
         <div class="proof-chip">
-          <img class="icon3d proof-chip-icon" src="./assets/icons3d/check.webp" alt="" width="22" height="22">
+          <span class="icon-tile tile-green proof-chip-tile"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
           Проверено на живых заявках
         </div>
         <h1>Тендерная заявка&nbsp;—<br>за <span class="grad-text">15&nbsp;минут</span></h1>
@@ -79,21 +79,21 @@
 
     <div class="hero-floats">
       <div class="float-card float-1" data-parallax-speed="0.25">
-        <img class="icon3d" src="./assets/icons3d/lightning.webp" alt="" width="40" height="40">
+        <div class="icon-box icon-tile tile-blue"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <div>
           <div class="num">15 минут</div>
           <div class="lbl">на одну заявку</div>
         </div>
       </div>
       <div class="float-card float-2" data-parallax-speed="0.4">
-        <img class="icon3d" src="./assets/icons3d/package.webp" alt="" width="40" height="40">
+        <div class="icon-box icon-tile tile-cyan"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg></div>
         <div>
           <div class="num">5 шагов</div>
           <div class="lbl">от файла до пакета</div>
         </div>
       </div>
       <div class="float-card float-3" data-parallax-speed="0.3">
-        <img class="icon3d" src="./assets/icons3d/scales.webp" alt="" width="40" height="40">
+        <div class="icon-box icon-tile tile-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg></div>
         <div>
           <div class="num">44-ФЗ · 223-ФЗ</div>
           <div class="lbl">обе редакции закона</div>
@@ -103,7 +103,7 @@
 
     <button class="scroll-cue" id="scrollCue" aria-label="Пролистать к разделу «Как это работает»">
       Листайте вниз
-      <img class="icon3d scroll-icon" src="./assets/icons3d/arrow-down.webp" alt="" width="18" height="18">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
     </button>
   </section>
 
@@ -122,35 +122,35 @@
         </div>
         <div class="steps-list" id="stepsList">
           <div class="step reveal">
-            <img class="step-dot icon3d" src="./assets/icons3d/upload.webp" alt="" width="56" height="56">
+            <div class="step-dot icon-tile tile-blue"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg></div>
             <div class="step-body">
               <h3>Загрузка <span class="step-num">01</span></h3>
               <p>Закидываете документы закупки целиком: PDF, Word, Excel, сканы и фото — ИИ разберёт всё сам.</p>
             </div>
           </div>
           <div class="step reveal">
-            <img class="step-dot icon3d" src="./assets/icons3d/search.webp" alt="" width="56" height="56">
+            <div class="step-dot icon-tile tile-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg></div>
             <div class="step-body">
               <h3>Анализ <span class="step-num">02</span></h3>
               <p>Находит требования и условия закупки — с точным адресом: страница, таблица, пункт.</p>
             </div>
           </div>
           <div class="step reveal">
-            <img class="step-dot icon3d" src="./assets/icons3d/ruble.webp" alt="" width="56" height="56">
+            <div class="step-dot icon-tile tile-green"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h8a4 4 0 0 0 0-8H9v18"/><path d="M6 15h8"/></svg></div>
             <div class="step-body">
               <h3>Цена <span class="step-num">03</span></h3>
               <p>Считает НМЦК и обеспечение, помогает собрать расчёт цены по закупке.</p>
             </div>
           </div>
           <div class="step reveal">
-            <img class="step-dot icon3d" src="./assets/icons3d/shield.webp" alt="" width="56" height="56">
+            <div class="step-dot icon-tile tile-navy"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
             <div class="step-body">
               <h3>Проверка <span class="step-num">04</span></h3>
               <p>Девять проверок перед отправкой: комплект, сроки, подписи, соответствие требованиям.</p>
             </div>
           </div>
           <div class="step reveal">
-            <img class="step-dot icon3d" src="./assets/icons3d/package.webp" alt="" width="56" height="56">
+            <div class="step-dot icon-tile tile-cyan"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 2 2 4-4"/><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></svg></div>
             <div class="step-body">
               <h3>Пакет <span class="step-num">05</span></h3>
               <p>Готовый комплект заявки: Word, PDF и ODT — скачиваете и подаёте на площадке.</p>
@@ -171,32 +171,32 @@
 
       <div class="features-grid reveal">
         <div class="feature-card">
-          <img class="icon3d" src="./assets/icons3d/search.webp" alt="" width="44" height="44">
+          <div class="icon-box icon-tile tile-blue"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></svg></div>
           <h3>Требования закупки</h3>
           <p>Срок, обязательность, числовые условия — с точным адресом в документе: страница, таблица, пункт.</p>
         </div>
         <div class="feature-card">
-          <img class="icon3d" src="./assets/icons3d/briefcase.webp" alt="" width="44" height="44">
+          <div class="icon-box icon-tile tile-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></div>
           <h3>База доказательств компании</h3>
           <p>Лицензии, допуски, опыт и сотрудники — каждый факт с документом-источником и сроком действия.</p>
         </div>
         <div class="feature-card">
-          <img class="icon3d" src="./assets/icons3d/clipboard.webp" alt="" width="44" height="44">
+          <div class="icon-box icon-tile tile-navy"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
           <h3>Автопроверка перед отправкой</h3>
           <p>Девять проверок заявки: от комплекта документов до сроков и подписей — до того, как вы отправите.</p>
         </div>
         <div class="feature-card">
-          <img class="icon3d" src="./assets/icons3d/file.webp" alt="" width="44" height="44">
+          <div class="icon-box icon-tile tile-cyan"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
           <h3>Готовые файлы заявки</h3>
           <p>Техническое предложение и комплект — сразу в Word, PDF и ODT, из одного описания документа.</p>
         </div>
         <div class="feature-card">
-          <img class="icon3d" src="./assets/icons3d/user.webp" alt="" width="44" height="44">
+          <div class="icon-box icon-tile tile-green"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
           <h3>Ни одного выдуманного факта</h3>
           <p>Срок, число, реквизит ИИ не придумывает — их читает код из цитаты документа, а не модель.</p>
         </div>
         <div class="feature-card">
-          <img class="icon3d" src="./assets/icons3d/scales.webp" alt="" width="44" height="44">
+          <div class="icon-box icon-tile tile-indigo"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg></div>
           <h3>44-ФЗ и 223-ФЗ</h3>
           <p>Версии закона привязаны к дате закупки — правила применяются те, что действовали на тот момент.</p>
         </div>
