@@ -1,52 +1,86 @@
 /* Тендерный юрист — лендинг. Отдельная статичная страница, не часть продукта (web/, design-system/prototype).
-   Палитра — тёмная тема продукта (design-system/brand.css .dark), шрифты — Geist/Geist Mono оттуда же (копии файлов). */
+   Шрифт — PT Sans / PT Mono (Paratype): шрифт, созданный для официальных цифровых сервисов РФ — строгий,
+   с родной кириллицей, без «бумажной» засечки. Файлы — свои (assets/fonts), не Google Fonts: лендинг открывают
+   посетители напрямую, незачем передавать их адрес Google при каждой загрузке. Лицензия — SIL Open Font License. */
 
 @font-face {
-  font-family: 'Geist';
+  font-family: 'PT Sans';
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
-  src: url('./assets/fonts/geist-cyrillic.woff2') format('woff2');
+  src: url('./assets/fonts/pt-sans-cyrillic.woff2') format('woff2');
   unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
 }
 @font-face {
-  font-family: 'Geist';
+  font-family: 'PT Sans';
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
-  src: url('./assets/fonts/geist-cyrillic-ext.woff2') format('woff2');
+  src: url('./assets/fonts/pt-sans-cyrillic-ext.woff2') format('woff2');
   unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 @font-face {
-  font-family: 'Geist';
+  font-family: 'PT Sans';
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
-  src: url('./assets/fonts/geist-latin.woff2') format('woff2');
+  src: url('./assets/fonts/pt-sans-latin.woff2') format('woff2');
   unicode-range: U+00-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+20AC, U+2122;
 }
 @font-face {
-  font-family: 'Geist';
+  font-family: 'PT Sans';
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
-  src: url('./assets/fonts/geist-latin-ext.woff2') format('woff2');
+  src: url('./assets/fonts/pt-sans-latin-ext.woff2') format('woff2');
   unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+1E00-1EFF, U+2020, U+2113;
 }
 @font-face {
-  font-family: 'Geist Mono';
+  font-family: 'PT Sans';
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 700;
   font-display: swap;
-  src: url('./assets/fonts/geist-mono-cyrillic.woff2') format('woff2');
+  src: url('./assets/fonts/pt-sans-bold-cyrillic.woff2') format('woff2');
   unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
 }
 @font-face {
-  font-family: 'Geist Mono';
+  font-family: 'PT Sans';
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 700;
   font-display: swap;
-  src: url('./assets/fonts/geist-mono-latin.woff2') format('woff2');
+  src: url('./assets/fonts/pt-sans-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/pt-sans-bold-latin.woff2') format('woff2');
+  unicode-range: U+00-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+20AC, U+2122;
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/pt-sans-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+1E00-1EFF, U+2020, U+2113;
+}
+@font-face {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/pt-mono-cyrillic.woff2') format('woff2');
+  unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+@font-face {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/pt-mono-latin.woff2') format('woff2');
   unicode-range: U+00-FF, U+2000-206F, U+20AC;
 }
 
@@ -64,8 +98,8 @@
   --brand-2: #6366f1;
   --brand-3: #3b82f6;
   --brand-gradient: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 45%, var(--brand-3) 100%);
-  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-sans: 'PT Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'PT Mono', ui-monospace, monospace;
   --r-card: 12px;
   --r-pill: 999px;
   --container: 1120px;
@@ -139,7 +173,7 @@ button { font: inherit; color: inherit; }
   flex: none;
 }
 
-h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
 .grad-text {
   background: var(--brand-gradient);
   -webkit-background-clip: text;
@@ -159,7 +193,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
   padding: 0 24px;
   border-radius: var(--r-pill);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 700;
   border: 1px solid transparent;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
@@ -222,7 +256,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 /* Шапка — всегда тёмное стекло поверх видео, независимо от темы страницы. */
 .nav { color: #fff; }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
 .brand img { width: 30px; height: 30px; border-radius: 8px; }
 .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; color: rgba(255, 255, 255, 0.72); }
 .nav-links a { transition: color 0.2s ease; }
@@ -295,7 +329,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
   border: 1px solid rgba(74, 222, 128, 0.35);
   color: var(--success);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 22px;
 }
 .proof-chip-tile { width: 22px; height: 22px; border-radius: 50%; }
@@ -388,7 +422,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
 }
 .float-card .icon-box .icon { width: 18px; height: 18px; }
 .float-card { color: #fff; }
-.float-card .num { font-family: var(--font-mono); font-size: 16px; font-weight: 600; line-height: 1.1; }
+.float-card .num { font-family: var(--font-mono); font-size: 16px; font-weight: 700; line-height: 1.1; }
 .float-card .lbl { font-size: 12px; color: rgba(255, 255, 255, 0.6); }
 .float-1 { top: 18%; right: 6%; }
 .float-2 { top: 46%; right: 4%; }
@@ -526,7 +560,7 @@ section { position: relative; padding: 120px 0; }
   font-size: clamp(1.3rem, 2.6vw, 1.9rem);
   line-height: 1.4;
   margin: 0 0 20px;
-  font-weight: 500;
+  font-weight: 700;
 }
 .proof-meta {
   font-family: var(--font-mono);
@@ -582,7 +616,7 @@ footer { border-top: 1px solid var(--border); padding: 56px 0 40px; transition: 
 .footer-brand .brand { margin-bottom: 12px; }
 .footer-brand p { color: var(--muted); font-size: 0.9rem; margin: 0; }
 .footer-cols { display: flex; gap: 64px; flex-wrap: wrap; }
-.footer-col h4 { font-size: 13px; color: var(--muted); font-weight: 500; margin: 0 0 14px; }
+.footer-col h4 { font-size: 13px; color: var(--muted); font-weight: 700; margin: 0 0 14px; }
 .footer-col a { display: block; font-size: 14px; color: var(--fg); margin-bottom: 10px; opacity: 0.85; }
 .footer-col a:hover { opacity: 1; }
 .footer-bottom {
