@@ -358,7 +358,6 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
   margin-bottom: 34px;
 }
 .hero-cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
-.hero-note { margin-top: 18px; font-size: 13px; color: rgba(255, 255, 255, 0.5); font-family: var(--font-mono); }
 
 /* ---- объёмные плитки иконок: градиент + блик + бевель + цветная тень ----
    Общий класс .icon-tile — на hero-карточках, шагах и карточках возможностей.
