@@ -46,6 +46,35 @@
   const stepsList = document.getElementById("stepsList");
   const stepsFill = document.getElementById("stepsFill");
 
+  // Видео целиком — это один длинный разворот медали (к 3-4-й секунде камера уже
+  // смотрит почти сбоку). Вместо родного loop (прыжок в конец → начало, похоже на
+  // рывок) берём только спокойный участок 0–2.6с и прокручиваем его туда-обратно —
+  // медаль мягко покачивается влево-вправо, не долетая до резкого разворота.
+  if (heroVideo) {
+    heroVideo.removeAttribute("loop");
+    heroVideo.pause();
+    const SWAY_END = 2.6;
+    const SWAY_PERIOD = 6000;
+    const STEP_MS = 90;
+    if (reduceMotion) {
+      heroVideo.currentTime = 0;
+    } else {
+      let lastUpdate = 0;
+      const tick = (now) => {
+        if (now - lastUpdate >= STEP_MS) {
+          lastUpdate = now;
+          const phase = (now % SWAY_PERIOD) / SWAY_PERIOD;
+          const triangle = phase < 0.5 ? phase * 2 : 2 - phase * 2;
+          heroVideo.currentTime = SWAY_END * triangle;
+        }
+        requestAnimationFrame(tick);
+      };
+      const start = () => requestAnimationFrame(tick);
+      if (heroVideo.readyState >= 1) start();
+      else heroVideo.addEventListener("loadedmetadata", start, { once: true });
+    }
+  }
+
   let ticking = false;
   function onFrame() {
     ticking = false;
