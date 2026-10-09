@@ -303,8 +303,8 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(60% 50% at 50% 30%, rgba(23, 24, 27, 0.4), rgba(23, 24, 27, 0.85) 70%),
-    linear-gradient(180deg, rgba(10, 10, 12, 0.65) 0%, rgba(17, 18, 21, 0.8) 45%, #17181b 100%);
+    radial-gradient(60% 50% at 50% 30%, rgba(23, 24, 27, 0.25), rgba(23, 24, 27, 0.78) 70%),
+    linear-gradient(180deg, rgba(10, 10, 12, 0.55) 0%, rgba(17, 18, 21, 0.72) 45%, #17181b 100%);
 }
 .hero-glow {
   position: absolute;
