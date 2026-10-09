@@ -174,6 +174,7 @@ button { font: inherit; color: inherit; }
 }
 
 h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.nb { white-space: nowrap; }
 .grad-text {
   background: var(--brand-gradient);
   -webkit-background-clip: text;
