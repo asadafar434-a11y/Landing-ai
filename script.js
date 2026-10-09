@@ -48,30 +48,48 @@
 
   // Видео целиком — это один длинный разворот медали (к 3-4-й секунде камера уже
   // смотрит почти сбоку). Вместо родного loop (прыжок в конец → начало, похоже на
-  // рывок) берём только спокойный участок 0–2.6с и прокручиваем его туда-обратно —
-  // медаль мягко покачивается влево-вправо, не долетая до резкого разворота.
+  // рывок) берём только спокойный участок 0–2.6с и качаем туда-обратно: вперёд —
+  // обычное воспроизведение (гладко, родной декодер), назад — currentTime шагами
+  // каждый кадр (play() в обратную сторону браузеры не умеют). Шаг — каждый rAF,
+  // без искусственного троттлинга: именно он давал заметные рывки.
   if (heroVideo) {
     heroVideo.removeAttribute("loop");
     heroVideo.pause();
     const SWAY_END = 2.6;
-    const SWAY_PERIOD = 6000;
-    const STEP_MS = 90;
     if (reduceMotion) {
       heroVideo.currentTime = 0;
     } else {
-      let lastUpdate = 0;
-      const tick = (now) => {
-        if (now - lastUpdate >= STEP_MS) {
-          lastUpdate = now;
-          const phase = (now % SWAY_PERIOD) / SWAY_PERIOD;
-          const triangle = phase < 0.5 ? phase * 2 : 2 - phase * 2;
-          heroVideo.currentTime = SWAY_END * triangle;
+      let lastTs = null;
+
+      function reverseStep(ts) {
+        if (lastTs == null) lastTs = ts;
+        const dt = (ts - lastTs) / 1000;
+        lastTs = ts;
+        const next = heroVideo.currentTime - dt;
+        if (next <= 0) {
+          heroVideo.currentTime = 0;
+          lastTs = null;
+          heroVideo.play().catch(() => {});
+          return;
         }
-        requestAnimationFrame(tick);
+        heroVideo.currentTime = next;
+        requestAnimationFrame(reverseStep);
+      }
+
+      heroVideo.addEventListener("timeupdate", () => {
+        if (!heroVideo.paused && heroVideo.currentTime >= SWAY_END) {
+          heroVideo.pause();
+          lastTs = null;
+          requestAnimationFrame(reverseStep);
+        }
+      });
+
+      const startForward = () => {
+        heroVideo.currentTime = 0;
+        heroVideo.play().catch(() => {});
       };
-      const start = () => requestAnimationFrame(tick);
-      if (heroVideo.readyState >= 1) start();
-      else heroVideo.addEventListener("loadedmetadata", start, { once: true });
+      if (heroVideo.readyState >= 1) startForward();
+      else heroVideo.addEventListener("loadedmetadata", startForward, { once: true });
     }
   }
 
