@@ -412,6 +412,28 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
   .icon-tile { transition: none; }
 }
 
+/* 3D-иконки Cedro: картинка сама несёт фон и объём, поэтому без плитки. */
+.icon3d {
+  display: block;
+  flex: none;
+  object-fit: cover;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #0f2d45 0%, #071a2b 100%);
+}
+.float-card .icon3d { width: 40px; height: 40px; border-radius: 10px; }
+.step-dot.icon3d { border-radius: 14px; }
+.feature-card .icon3d {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (hover: hover) {
+  .feature-card:hover .icon3d {
+    transform: perspective(600px) rotateX(10deg) rotateY(-10deg) scale(1.06);
+  }
+}
+
 .hero-floats { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .float-card {
   position: absolute;
