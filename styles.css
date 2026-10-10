@@ -85,8 +85,8 @@
 }
 
 :root {
-  --bg: #17181b;
-  --bg-raised: #1c1d21;
+  --bg: #08080c;
+  --bg-raised: #0e0e13;
   --card: #212226;
   --card-hover: #26272c;
   --secondary: #2c2d32;
@@ -120,6 +120,7 @@
   --success: #16a34a;
   color-scheme: light;
 }
+:root[data-theme="light"] .hero { background: #17181b; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -140,6 +141,20 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   body { transition: none; }
+}
+
+/* Фон как в интерфейсе чата: почти чёрный, с фиолетовым свечением в правом нижнем углу.
+   Закреплён к окну, поэтому при прокрутке светится на одном месте. */
+:root:not([data-theme="light"]) body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 65% at 90% 95%, rgba(110, 56, 240, 0.85), transparent 72%),
+    radial-gradient(55% 60% at 65% 60%, rgba(84, 40, 190, 0.5), transparent 72%),
+    radial-gradient(40% 50% at 25% 0%, rgba(50, 25, 110, 0.28), transparent 70%);
 }
 
 img { max-width: 100%; display: block; }
@@ -279,7 +294,13 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
   overflow: hidden;
   isolation: isolate;
 }
-.hero-media { position: absolute; inset: 0; z-index: -2; }
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
 .hero-media video {
   position: absolute;
   inset: 0;
@@ -305,7 +326,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
   z-index: -1;
   background:
     radial-gradient(60% 50% at 50% 30%, rgba(23, 24, 27, 0.25), rgba(23, 24, 27, 0.78) 70%),
-    linear-gradient(180deg, rgba(10, 10, 12, 0.55) 0%, rgba(17, 18, 21, 0.72) 45%, #17181b 100%);
+    linear-gradient(180deg, rgba(8, 8, 12, 0.55) 0%, rgba(8, 8, 12, 0.72) 45%, rgba(8, 8, 12, 0) 100%);
 }
 .hero-glow {
   position: absolute;
