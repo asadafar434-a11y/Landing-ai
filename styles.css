@@ -325,7 +325,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0; }
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(60% 50% at 50% 30%, rgba(23, 24, 27, 0.25), rgba(23, 24, 27, 0.78) 70%),
+    radial-gradient(60% 50% at 50% 30%, rgba(23, 24, 27, 0.25), rgba(23, 24, 27, 0.78) 70%, rgba(23, 24, 27, 0) 100%),
     linear-gradient(180deg, rgba(8, 8, 12, 0.55) 0%, rgba(8, 8, 12, 0.72) 45%, rgba(8, 8, 12, 0) 100%);
 }
 .hero-glow {
