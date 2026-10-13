@@ -85,12 +85,14 @@
   window.addEventListener("resize", requestTick);
   onFrame();
 
-  // Качание медали. Ролик — один долгий разворот, поэтому берём спокойный участок 0–2.6с.
+  // Качание медали. Ролик (5 с): медаль смотрит прямо, поворачивается вбок и возвращается.
   // Кадры декодируются один раз при загрузке (requestVideoFrameCallback отдаёт ровно те кадры,
   // что видит пользователь), дальше канва переключает их по времени: вперёд, потом назад.
   // Перемотки самого видео назад на каждом кадре и давали рывки — их здесь больше нет.
-  const SWAY_END = 2.6;
-  const FRAME_SIZE = 720;
+  // Кадров ~120, каждый занимает память как картинка — на телефоне они мельче.
+  const FRAME_SIZE = window.innerWidth < 700 ? 512 : 640;
+  // Водяной знак генератора в правом нижнем углу кадра — закрашиваем чёрным (фон ролика чёрный).
+  const MARK = { x: 0.79, y: 0.936, w: 0.2, h: 0.055 };
   const canSway =
     !reduceMotion &&
     heroVideo &&
@@ -102,15 +104,33 @@
 
   if (heroVideo) heroVideo.pause();
 
-  if (canSway) {
+  // Кадры ролика рисуем на канве: она закрывает видео и скрывает водяной знак.
+  const ctx = heroVideo && heroCanvas && heroMedia ? heroCanvas.getContext("2d") : null;
+  if (ctx) {
+    heroCanvas.width = FRAME_SIZE;
+    heroCanvas.height = FRAME_SIZE;
+  }
+  const paint = (frame) => {
+    ctx.drawImage(frame, 0, 0, FRAME_SIZE, FRAME_SIZE);
+    ctx.fillStyle = "#000";
+    ctx.fillRect(MARK.x * FRAME_SIZE, MARK.y * FRAME_SIZE, MARK.w * FRAME_SIZE, MARK.h * FRAME_SIZE);
+  };
+
+  if (ctx && !canSway) {
+    // Без движения (reduced motion или старый браузер) — один первый кадр, без водяного знака.
+    const still = () => {
+      paint(heroVideo);
+      heroMedia.classList.add("is-canvas");
+    };
+    if (heroVideo.readyState >= 2) still();
+    else heroVideo.addEventListener("loadeddata", still, { once: true });
+  }
+
+  if (ctx && canSway) {
     let visible = true;
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
     }).observe(hero);
-
-    const ctx = heroCanvas.getContext("2d");
-    heroCanvas.width = FRAME_SIZE;
-    heroCanvas.height = FRAME_SIZE;
 
     const jobs = [];
     let capturing = true;
@@ -126,7 +146,7 @@
         return bitmaps[pos < n ? pos : cycle - pos];
       };
 
-      ctx.drawImage(bitmaps[n - 1], 0, 0);
+      paint(bitmaps[n - 1]);
       heroMedia.classList.add("is-canvas");
 
       const t0 = performance.now() - ((n - 1) / fps) * 1000;
@@ -136,7 +156,7 @@
           const k = Math.floor(((now - t0) / 1000) * fps);
           if (k !== lastK) {
             lastK = k;
-            ctx.drawImage(frameAt(k), 0, 0);
+            paint(frameAt(k));
           }
         }
         requestAnimationFrame(draw);
@@ -154,12 +174,10 @@
       });
     };
 
+    // Пока ролик играет в первый раз, декодируем кадры и тут же показываем их на канве.
     const onVideoFrame = (now, meta) => {
       if (!capturing) return;
-      if (meta.mediaTime > SWAY_END) {
-        finishCapture();
-        return;
-      }
+      paint(heroVideo);
       jobs.push(
         createImageBitmap(heroVideo, { resizeWidth: FRAME_SIZE, resizeHeight: FRAME_SIZE })
           .then((bitmap) => ({ t: meta.mediaTime, bitmap }))
@@ -169,6 +187,7 @@
     };
 
     const begin = () => {
+      paint(heroVideo);
       heroVideo.currentTime = 0;
       heroVideo.requestVideoFrameCallback(onVideoFrame);
       heroVideo.play().catch(() => {
